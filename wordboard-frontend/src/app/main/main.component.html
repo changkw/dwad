@@ -1,0 +1,30 @@
+<div *ngFor="let post of posts.reverse()" class="card mb-3">
+  <div class="card-body">
+    <span *ngIf="loggedIn && post.author_id == user.id" class="float-right"></span>
+    <h4 class="card-title font-weight-bold">{{ post.title }}</h4>
+    <div Markdown class="card-text p-2 border border-light">{{ post.content }}</div>
+  </div>
+  <div class="card-body">
+  <h5>Comments</h5>
+  <div *ngFor="let cmt of post.comments" class="card p-2 mb-3 bg-light w-75">    
+      <p class="card-text">{{ cmt.content }}</p>
+      <span class="font-weight-light font-italic">{{ cmt.author_name }} - {{ cmt.date_created | date:'fullDate' }}</span>
+  </div>
+  <div *ngIf="loggedIn" class="form-group">
+      <textarea #comment placeholder="Your comments" class="form-control" id="comment" rows="3"></textarea>
+      <br/>
+      <button type="button" class="btn bt-sm btn-outline-success" (click)="addComment(post, comment.value)">add comment</button>
+    </div>   
+</div>
+ 
+  <div class="card-footer text-muted">
+    <span>{{ post.date_created | date: 'fullDate' }}</span>
+    <span>by {{ post.author_name }}</span>
+    <span *ngIf="loggedIn && post.author_id == user.id" class="float-right">
+      <button type="button" class="btn btn-sm btn-danger" (click)="onDelete(post)">delete</button>
+      <a class="btn btn-sm btn-warning" href="#" routerLink="/posts/{{ post.id }}">edit</a>
+    </span>  
+  </div>  
+</div>
+
+

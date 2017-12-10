@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-info fixed-top">
+    <a class="navbar-brand" href="#" routerLink="/">WordBoard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#" routerLink="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown" ngbDropdown>
+            <a class="nav-link dropdown-toggle" id="dropdown01" ngbDropdownToggle>Posts</a>
+            <div *ngIf="loggedIn" class="dropdown-menu" aria-labelledby="dropdown01" ngbDropdownMenu>
+              <a class="dropdown-item" href="#" routerLink="/posts">Create</a>
+            </div>
+          </li>
+      </ul>
+    </div>
+    <button *ngIf="!loggedIn" class="btn btn-social-icon btn-facebook" (click)="signInWithFB()"><span class="fa fa-facebook">Sign-In with Facebook</span></button>
+    <button *ngIf="loggedIn" class="btn btn-social-icon btn-facebook" (click)="signOut()"><span class="fa fa-facebook">Sign Out</span></button>
+  </nav>
